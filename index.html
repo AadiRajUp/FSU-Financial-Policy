@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FSU Financial Policy - Pulchowk Campus</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    body {
+      flex-direction: column;
+      height: auto;
+      min-height: 100vh;
+      background: #f8f9fa;
+    }
+    
+    .page-header {
+      background: #27ae60;
+      width: 100%;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .page-header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .page-header p {
+      font-size: 18px;
+      opacity: 0.95;
+    }
+    
+    .content-wrapper {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .info-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 4px solid #27ae60;
+    }
+    
+    .info-card h3 {
+      color: #27ae60;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    
+    .info-card p, .info-card ul {
+      color: #555;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    
+    .info-card ul {
+      list-style-position: inside;
+      margin-top: 10px;
+    }
+    
+    .info-card ul li {
+      margin-bottom: 8px;
+    }
+    
+    .info-card strong {
+      color: #333;
+    }
+    
+    .chart-section {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .chart-section h2 {
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .chart-section p {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    
+    #chartContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .budget-highlight {
+      font-size: 32px;
+      font-weight: 700;
+      color: #27ae60;
+      margin: 10px 0;
+    }
+    
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 28px;
+      }
+      #chartContainer {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>FSU Financial Policy</h1>
+        <p>Free Students' Union, Pulchowk Campus</p>
+    </div>
+    
+    <div class="content-wrapper">
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>Total Budget</h3>
+                <div class="budget-highlight">Rs. 37,00,000/-</div>
+                <p>Strategically distributed across six key categories to support student initiatives throughout the academic year.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Philosophy of Design</h3>
+                <p>Balances fairness, transparency, objectivity, and measurable outcomes with mathematical backing. Policy amendments require ⅔ committee approval.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Key Principles</h3>
+                <ul>
+                    <li><strong>Square Root Rule</strong> - Fair distribution model</li>
+                    <li><strong>Time-aware Scaling</strong> - Supports all equally</li>
+                    <li><strong>Staged Disbursement</strong> - Ensures accountability</li>
+                    <li><strong>Public Ledger</strong> - Complete transparency</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="chart-section">
+            <h2>Fund Distribution</h2>
+            <p>Click on any section to learn more about specific funds</p>
+            <div id="chartContainer">
+                <canvas id="myPieChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>Documentation</h3>
+                <p>
+                    For complete details, procedures, and eligibility criteria, refer to the official 
+                    <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener" style="color: #27ae60; text-decoration: none; font-weight: 600;">FSU Financial Policy Document</a>.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Transparency</h3>
+                <p>Monthly budget publications and public ledgers ensure complete transparency in fund allocation and utilization across all categories.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+  <script>
+    const logo = new Image();
+    logo.src = './resources/circfsulogo.png';
+    const centerLogoPlugin = {
+    id: 'centerLogo',
+    afterDraw(chart) {
+        const { ctx, chartArea } = chart;
+
+        if (!chartArea) return;
+
+        const { left, right, top, bottom } = chartArea;
+        const centerX = (left + right) / 2;
+        const centerY = (top + bottom) / 2;
+
+        const size = Math.min(right - left, bottom - top) * 0.4;
+
+        ctx.save();
+        ctx.drawImage(
+        logo,
+        centerX - size / 2,
+        centerY - size / 2,
+        size,
+        size
+        );
+        ctx.restore();
+    }
+    };
+
+    const ctx = document.getElementById('myPieChart').getContext('2d');
+
+    // Data for the pie chart
+    const data = {
+      labels: ['Exhibition Fund', 'Travel Subsidy Fund', 'Entry Fee Fund', 'Research and Innovation Fund', 'Clubs Events Fund','Internal Fund'],
+      datasets: [{
+        data: [500000, 400000,500000,800000,500000,1000000],
+        backgroundColor: ['#6ce5e8', '#af4c0f', '#7fbbe9', '#7a91c1', '#1800ad', '#8c55a1'],
+        hoverOffset: 50
+      }]
+    };
+
+    // Create the pie chart
+    const myPieChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },centerLogoPlugin
+        },
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const index = elements[0].index;
+            // Redirect based on the clicked slice
+            const urls = [
+              'ExibitionFund.html',
+              'TravelSubsidy.html',
+              'EntryFeeFund.html',
+              'ResearchAndInnovationFund.html',
+              'ClubsEventsFund.html',
+              'FSUInternalFund.html'
+            ];
+            window.location.href = urls[index];
+          }
+        }
+      },
+      plugins: [centerLogoPlugin]
+    });
+  </script>
+</body>
+</html>

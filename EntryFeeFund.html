@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FSU Travel Subsidy Calculator</title>
+    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/tsstyle.css" />
+    <!--<link rel="stylesheet" href="css/style.css">-->
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">
+          <span>← Back to Home</span>
+        </a>
+      </div>
+    </nav>
+    <div class="page-wrapper">
+    <div class="container">
+      <div class="header">
+        <h1>Entry Fee Fund</h1>
+        <p>
+          Students on campus need entry fees in order to participate in
+          tournaments and competitions throughout the year. Entry Fee Fund of
+          Rs. 5,00,000 supports these expenses.
+        </p>
+      </div>
+
+      <div class="section-card">
+        <div class="badge">Eligibility</div>
+        <p>
+          Any endeavour that seeks to apply for this endeavour has to fulfil
+          either of the two objectives:
+        </p>
+        <ul>
+          <li>
+            The event that the student seeks to apply for must represent
+            Pulchowk Campus in a Sport Category.
+          </li>
+          <li>
+            The event that the student seeks to apply for must represent
+            Pulchowk Campus in an Academic Event.
+          </li>
+        </ul>
+      </div>
+      <div class="header">
+        <h2>Sports Funding rules</h2>
+        <p>
+          For each sport (per gender), the Free Students' Union Pulchowk Campus
+          will fund one away team and two home teams entries per academic
+          year(i.e. for a particular sport of a particular gender, a total of
+          three entries will be funded.)
+        </p>
+      </div>
+      <div class="section-card">
+        <div class="badge-subsection">Caps</div>
+        <p>
+          The maximum amount of money that the Free Students' Union Pulchowk
+          Campus will fund is given as follows:
+        </p>
+        <ul>
+          <li><strong>Outdoor Sport Entry:</strong> Rs. 30,000/-</li>
+          <li>
+            <strong
+              >Indoor Sport Entry (With more than or equal to 5
+              Players):</strong
+            >
+            Rs. 20,000/-
+          </li>
+          <li>
+            <strong>Indoor Sports Entry (With less than 5 Players):</strong> Rs.
+            5,000/-
+          </li>
+        </ul>
+
+        <div class="badge-subsection">Outdoor and Indoor Sport</div>
+        <p>
+          Outdoor sports are played in open natural environments like fields or
+          natural terrains, such as football, hiking, emphasising endurance,
+          natural elements, and larger spaces for activities. Indoor sports are
+          played in a sheltered, controlled environment, such as a gym or
+          stadium, and often focus on skill and precision, with examples like
+          chess and table tennis.
+        </p>
+
+        <div class="badge-subsection">Home and Away Team</div>
+        <p>
+          When a team plays on its own campus premises, organised by the
+          students of their own campus, the game will be regarded as the home
+          team. Otherwise, it will be regarded as the away team.
+        </p>
+
+        <div class="badge-subsection">Contingency with the entry fee</div>
+        <p>
+          The sports team will receive the diet of Rs. 60/day/person, assured by
+          a manager of the team appointed by the Free Students' Union Pulchowk
+          Campus executive committee. The coach for any event will be addressed
+          by the Free Students' Union Pulchowk Campus executive committee with
+          regard to the treasury of the Union.
+        </p>
+      </div>
+      <div class="header">
+        <h2>Academic Events</h2>
+        <p>
+          For any academic events like project demonstration or competitions
+          that represent Pulchowk Campus, the Entry Fee Fund provides financial
+          support. It is calculated with the help of two paramaters. Avalue
+          depends on the type of event and Bvalue on th number of participants.
+          The product of these give the allocated fund.
+        </p>
+      </div>
+      <div class="header">
+        <h2>Academic Fund Calculator</h2>
+        <p>FSU Financial Policy</p>
+      </div>
+
+      <div class="calculator-wrapper">
+        <form class="form-group">
+          <div class="form-section">
+            <div class="form-item">
+              <label for="das">Select your event type:</label>
+              <select
+                name="aValue"
+                id="das"
+                class="select-input"
+                title="Choose your event type"
+              >
+                <option value="1">
+                  Project Demonstration and competitions
+                </option>
+                <option value="2">Paper presentation and conferences</option>
+              </select>
+            </div>
+            <div class="form-item">
+              <label for="asd">Number of participants:</label>
+              <input
+                type="number"
+                name="bValue"
+                id="asd"
+                class="number-input"
+                placeholder="2"
+                value="2"
+                min="1"
+                title="Enter number of participants (minimum 1)"
+              />
+            </div>
+            <button
+              type="button"
+              onclick="calculate()"
+              class="calculate-btn"
+              title="Calculate travel subsidy with current inputs"
+            >
+              Calculate Fund
+            </button>
+
+            <div id="resultSection" class="result-section hidden">
+              <div class="result-content">
+                <p class="result-label">
+                  Your Entry fee subsidy as per FSU Financial Policy is:
+                </p>
+                <p class="result-amount" id="resultAmount"></p>
+                <p class="result-details" id="resultDetails"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph-container hidden" id="graph-container">
+            <div id="calculator" class="calculator-graph"></div>
+          </div>
+        </form>
+      </div>
+      <div class="info-section">
+        <div class="info-content">
+          <div class="info-item">
+            <h3>How to Use</h3>
+            <p>
+              Select the type of academic event from the dropdown menu and enter
+              the number of participants involved. Click on the "Calculate Fund"
+              button to see the allocated Entry Fee Fund based on the
+              <a
+                href="resources/Financial Policy 2082.pdf"
+                target="_blank"
+                rel="noopener"
+                >FSU Financial Policy</a
+              >.
+            </p>
+          </div>
+          <div class="info-item">
+            <h3>Base Costs by Type of Event</h3>
+            <ul>
+              <li>
+                <strong>Project Demonstration and competitions:</strong> Rs.
+                1,000/-
+              </li>
+              <li>
+                <strong>Paper presentation and conferences:</strong> Rs. 1,000/-
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function calculate() {
+      let costPerParticipant = document.getElementById("das").value;
+      let bValue = document.getElementById("asd").value;
+      bValue = Math.sqrt(bValue);
+
+      let totalCost = 1000 * bValue;
+      // Display result instead of alert
+      const resultSection = document.getElementById("resultSection");
+      document.getElementById("resultAmount").textContent =
+        "Rs. " + totalCost.toFixed(2);
+      document.getElementById("resultDetails").textContent =
+        "Number of participants: " + Math.round(bValue * bValue);
+      resultSection.classList.remove("hidden");
+      resultSection.classList.add("visible");
+
+      // Scroll to results
+      resultSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  </script>
+    </div>
+  </body>
+</html>

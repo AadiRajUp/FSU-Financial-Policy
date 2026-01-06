@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSU Travel Subsidy Calculator</title>
+    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/tsstyle.css">
+</head>
+<body>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="index.html" class="navbar-brand">
+          <span>← Back to Home</span>
+        </a>
+      </div>
+    </nav>
+    <div class="page-wrapper">
+    <div class="container">
+        <div class="header">
+            <h1>Travel Subsidy</h1>
+            <p>The Travel Subsidy Fund of Rs. 4,00,000 (with a 10% locked reserve) supports travel expenses for academic or sports-related project demonstrations or competitions that represent the campus. Internships are excluded. A ₹40,000 reserve is held for exceptional cases and can only be released with a ⅔ committee quorum, including the President and Treasurer, after 75% of the budget is used. Subsidy amounts are determined using three factors: destination (A-Value), number of students (B-Value), and time-aware fund availability (C-Value).</p>
+        </div>
+        
+        
+
+        <div class="header">
+            <h2>Travel Subsidy Calculator</h1>
+            <p>FSU Financial Policy</p>
+        </div>
+
+
+        <div class="calculator-wrapper">
+            <form class="form-group">
+                <div class="form-section">
+                    <div class="form-item">
+                        <label for="das">Select your location:</label>
+                        <select name="aValue" id="das" class="select-input" title="Choose your travel destination region">
+                            <option value="1">Nepal</option>
+                            <option value="2">India</option>
+                            <option value="3">SAARC (not India)</option>
+                            <option value="4">Asia (non-SAARC)</option>
+                            <option value="5">Out of Asia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="asd">Number of participants:</label>
+                        <input type="number" name="bValue" id="asd" class="number-input" placeholder="2" value="2" min="1" title="Enter number of participants (minimum 1)">
+                    </div>
+
+                    <button type="button" onclick="toggleSandbox()" class="sandbox-btn" id="sandboxToggle" title="Toggle sandbox to adjust budget and years sliders">Enable Sandbox Mode</button>
+
+                    <div class="form-item slider-item hidden" id="budgetItem">
+                        <div class="slider-header">
+                            <label for="budget">Budget Remaining:</label>
+                            <span class="slider-value" id="budgetValue">70%</span>
+                        </div>
+                        <input type="range" id="budget" name="budget" min="0" max="100" step="1" value="70" oninput="showValue1()" class="slider" title="Adjust remaining budget percentage">
+                    </div>
+
+                    <div class="form-item slider-item hidden" id="yearItem">
+                        <div class="slider-header">
+                            <label for="YearRemaining">Years Remaining:</label>
+                            <span class="slider-value" id="yearsRemaining">70%</span>
+                        </div>
+                        <input type="range" id="YearRemaining" name="YearRemaining" min="0" max="100" step="1" value="70" oninput="showValue2()" class="slider" title="Adjust remaining years percentage">
+                    </div>
+
+                    <button type="button" onclick="calculate()" class="calculate-btn" title="Calculate travel subsidy with current inputs">Calculate Travel Subsidy</button>
+
+                    <div id="resultSection" class="result-section hidden">
+                        <div class="result-content">
+                            <p class="result-label">Your travel subsidy as per FSU Financial Policy is:</p>
+                            <p class="result-amount" id="resultAmount"></p>
+                            <p class="result-details" id="resultDetails"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graph-container hidden" id="graph-container">
+                    <div id="calculator" class="calculator-graph"></div>
+                </div>
+            </form>
+        </div>
+        <div class="info-section">
+            <div class="info-content">
+                <div class="info-item">
+                    <h3>How to Use</h3>
+                    <p>Select your destination, enter the number of participants, and adjust the budget and years remaining sliders to calculate the appropriate travel subsidy amount.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Base Costs by Region</h3>
+                    <ul>
+                        <li><strong>Nepal:</strong> Rs. 2,500 per person</li>
+                        <li><strong>India:</strong> Rs. 10,000 per person</li>
+                        <li><strong>SAARC (not India):</strong> Rs. 15,000 per person</li>
+                        <li><strong>Asia (non-SAARC):</strong> Rs. 20,000 per person</li>
+                        <li><strong>Out of Asia:</strong> Rs. 25,000 per person</li>
+                    </ul>
+                </div>
+                <div class="info-item">
+                    <h3>Additional Information</h3>
+                    <p>This calculator applies dynamic adjustments based on available budget and remaining fiscal years. The cValue is decided by FSU monthly, you can explore it yourself by enabling sandbox mode. This is completely based on the <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener">FSU Financial Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=643b5c3fbb554dfda574c605348fed3b"></script>
+<script>
+    var elt = document.getElementById('calculator');
+    var calculator = Desmos.GraphingCalculator(elt, {
+        expressions: false,
+        settingsMenu: false,
+        zoomButtons: false,
+        keypad: false,
+        lockViewport: true
+    });
+    calculator.setMathBounds({
+        left: 0,
+        right: 100,
+        bottom: 0,
+        top: 100
+    });
+    calculator.setExpression({
+        id: 'graph1',
+        latex: 'y<10+(80-10)(1-x/100)^{0.7}',
+        color: Desmos.Colors.RED
+    });
+    calculator.setExpression({ id: 'graph2', latex: 'y<10', color: Desmos.Colors.PURPLE });
+</script>
+<script>
+    var sandboxEnabled = false;
+
+    function toggleSandbox() {
+        sandboxEnabled = !sandboxEnabled;
+        const toggle = document.getElementById("sandboxToggle");
+        const budgetItem = document.getElementById("budgetItem");
+        const yearItem = document.getElementById("yearItem");
+        if (sandboxEnabled) {
+            toggle.textContent = "Disable Sandbox Mode";
+            toggle.classList.add("active");
+            budgetItem.classList.remove("hidden");
+            yearItem.classList.remove("hidden");
+            budgetItem.classList.add("visible");
+            yearItem.classList.add("visible");
+            document.getElementById("graph-container").classList.remove("hidden");
+            document.getElementById("graph-container").classList.add("visible");
+        } else {
+            toggle.textContent = "Enable Sandbox Mode";
+            toggle.classList.remove("active");
+            budgetItem.classList.add("hidden");
+            yearItem.classList.add("hidden");
+            budgetItem.classList.remove("visible");
+            yearItem.classList.remove("visible");
+            document.getElementById("graph-container").classList.add("hidden");
+            document.getElementById("graph-container").classList.remove("visible");
+        }
+    }
+
+    function showValue1() {
+        let budget = document.getElementById("budget").value;
+        document.getElementById("budgetValue").innerHTML = budget + '%';
+        if (sandboxEnabled) {
+            graph();
+        }
+    }
+
+    function showValue2() {
+        let yearsRemaining = document.getElementById("YearRemaining").value;
+        document.getElementById("yearsRemaining").innerHTML = yearsRemaining + '%';
+        if (sandboxEnabled) {
+            graph();
+        }
+    }
+
+    function graph() {
+        let budget = document.getElementById("budget").value;
+        let yearsRemaining = document.getElementById("YearRemaining").value;
+        calculator.setExpression({ id: 'graph3', latex: `(${yearsRemaining},${budget})`, color: Desmos.Colors.GREEN });
+    }
+
+    function calculate() {
+        let costPerParticipant = document.getElementById("das").value;
+        let bValue = document.getElementById("asd").value;
+        bValue = Math.sqrt(bValue);
+        let cValue = 1;
+        let aValue;
+        
+        // Use fixed values or adjustable values based on sandbox mode
+        let budget, yearsRemaining, R = 0.1, I = 0.8, G = 0.7;
+        
+        if (sandboxEnabled) {
+            budget = document.getElementById("budget").value / 100;
+            yearsRemaining = document.getElementById("YearRemaining").value / 100;
+        } else {
+            // Fixed at 0.7 when sandbox is disabled
+
+            budget = 0.7;
+            yearsRemaining = 0.7;
+        }
+        
+        let y = yearsRemaining;
+        let safeval = R + (I - R) * Math.pow((1 - y), G);
+        if (costPerParticipant == "1") {
+            aValue = 2500; // Nepal
+        } else if (costPerParticipant == "2") {
+            aValue = 10000; // India
+        } else if (costPerParticipant == "3") {
+            aValue = 15000; // SAARC (not India)
+        } else if (costPerParticipant == "4") {
+            aValue = 20000; // Asia (non-SAARC)
+        } else {
+            aValue = 25000; // Out of Asia
+        }
+
+        if (budget - safeval > 0) {
+            cValue = 1;
+        } else {
+            cValue = budget / safeval;
+        }
+        if(!sandboxEnabled){
+            cValue = 0.7;
+        }
+
+        let totalCost = aValue * bValue * cValue;
+        totalCost = Math.round(totalCost / 10) * 10;
+
+        // Display result instead of alert
+        const resultSection = document.getElementById("resultSection");
+        document.getElementById("resultAmount").textContent = "Rs. " + totalCost.toFixed(2);
+        document.getElementById("resultDetails").textContent = "Subsidy Factor: " + cValue.toFixed(2);
+        resultSection.classList.remove("hidden");
+        resultSection.classList.add("visible");
+        
+        // Scroll to results
+        resultSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+</script>
+    </div>
+</body>
+</html>
+    
