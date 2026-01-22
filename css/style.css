@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
 body{
-    font-family: Arial, sans-serif;
+    font-family: 'Work Sans', Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', 'Work Sans', serif;
 }

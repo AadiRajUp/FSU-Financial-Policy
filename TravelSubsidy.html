@@ -126,9 +126,9 @@
     calculator.setExpression({
         id: 'graph1',
         latex: 'y<10+(80-10)(1-x/100)^{0.7}',
-        color: Desmos.Colors.RED
+        color: '#c49102'
     });
-    calculator.setExpression({ id: 'graph2', latex: 'y<10', color: Desmos.Colors.PURPLE });
+    calculator.setExpression({ id: 'graph2', latex: 'y<10', color: '#091839' });
 </script>
 <script>
     var sandboxEnabled = false;
@@ -178,7 +178,7 @@
     function graph() {
         let budget = document.getElementById("budget").value;
         let yearsRemaining = document.getElementById("YearRemaining").value;
-        calculator.setExpression({ id: 'graph3', latex: `(${yearsRemaining},${budget})`, color: Desmos.Colors.GREEN });
+        calculator.setExpression({ id: 'graph3', latex: `(${yearsRemaining},${budget})`, color: '#c49102' });
     }
 
     function calculate() {
