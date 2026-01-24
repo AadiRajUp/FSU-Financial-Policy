@@ -190,7 +190,7 @@
 
   <script>
     const logo = new Image();
-    logo.src = ".{{url_for('static',filename='resources/circfsulogo.png')}}";
+    logo.src = "{{ url_for('static', filename='resources/circfsulogo.png') }}";
     const centerLogoPlugin = {
     id: 'centerLogo',
     afterDraw(chart) {
