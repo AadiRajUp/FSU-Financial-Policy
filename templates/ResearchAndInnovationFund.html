@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FSU Research and Innovation Fund</title>
-    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/tsstyle.css" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='resources/circfsulogo.png')}}" type="image/x-icon" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
   </head>
   <body>
     <nav class="navbar">
@@ -114,7 +114,7 @@
               evaluated based on innovation, feasibility, and alignment with
               campus or national engineering challenges. Visit the
               <a
-                href="resources/Financial Policy 2082.pdf"
+                href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}"
                 target="_blank"
                 rel="noopener"
                 >FSU Financial Policy</a

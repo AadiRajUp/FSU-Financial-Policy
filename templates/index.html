@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FSU Financial Policy - Pulchowk Campus</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="./css/style.css">
   <style>
     body {
       flex-direction: column;
@@ -174,7 +174,7 @@
                 <h3>Documentation</h3>
                 <p>
                     For complete details, procedures, and eligibility criteria, refer to the official 
-                    <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener" style="color: #c49102; text-decoration: none; font-weight: 600;">FSU Financial Policy Document</a>.
+                    <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #c49102; text-decoration: none; font-weight: 600;">FSU Financial Policy Document</a>.
                 </p>
             </div>
             
@@ -190,7 +190,7 @@
 
   <script>
     const logo = new Image();
-    logo.src = './resources/circfsulogo.png';
+    logo.src = ".{{url_for('static',filename='resources/circfsulogo.png')}}";
     const centerLogoPlugin = {
     id: 'centerLogo',
     afterDraw(chart) {

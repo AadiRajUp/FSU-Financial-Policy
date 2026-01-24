@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FSU Clubs Events Fund</title>
     <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/tsstyle.css" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
   </head>
   <body>
     <nav class="navbar">
@@ -155,7 +155,7 @@
               participants, and conduct in-person events on campus. Each club
               can apply once per year. For more details, visit the
               <a
-                href="resources/Financial Policy 2082.pdf"
+                href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}"
                 target="_blank"
                 rel="noopener"
                 >FSU Financial Policy</a
