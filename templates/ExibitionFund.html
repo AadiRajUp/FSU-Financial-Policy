@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FSU Departmental Exhibition Fund</title>
-    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/tsstyle.css" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='resources/circfsulogo.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tsstyle.css')}}"/>
   </head>
   <body>
     <nav class="navbar">
@@ -121,7 +121,7 @@
       </div>
 
       <div class="section-card">
-        <p><em>For more information checkout <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener">FSU Financial Policy</a>.</em></p>
+        <p><em>For more information checkout<a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">FSU Financial Policy</a>.</em></p>
       </div>
     </div>
     </div>

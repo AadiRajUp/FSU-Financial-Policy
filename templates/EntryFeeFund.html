@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FSU Travel Subsidy Calculator</title>
-    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/tsstyle.css" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='resources/circfsulogo.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tsstyle.css')}}" />
     <!--<link rel="stylesheet" href="css/style.css">-->
   </head>
   <body>
@@ -178,12 +178,7 @@
               Select the type of academic event from the dropdown menu and enter
               the number of participants involved. Click on the "Calculate Fund"
               button to see the allocated Entry Fee Fund based on the
-              <a
-                href="resources/Financial Policy 2082.pdf"
-                target="_blank"
-                rel="noopener"
-                >FSU Financial Policy</a
-              >.
+              <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">FSU Financial Policy</a>.
             </p>
           </div>
           <div class="info-item">

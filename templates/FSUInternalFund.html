@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FSU Internal Fund</title>
-    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/tsstyle.css" />
+    <link rel="shortcut icon" href="{{url_for('static',filename='resources/circfsulogo.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tsstyle.css')}}" />
   </head>
   <body>
     <nav class="navbar">
@@ -66,8 +66,8 @@
         <div class="badge-subsection">Budget Adjustment Policy</div>
         <p>
           If the funds allotted to certain sub-sections are insufficient, they
-          will be taken from Part 6 of the <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener">Policy</a>.; if they are more than
-          required, they will be funded to Part 6 of the <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener">Policy</a>. This ensures
+          will be taken from Part 6 of the <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">policy</a>.; if they are more than
+          required, they will be funded to Part 6 of the <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">FSU Financial Policy</a>. This ensures
           efficient allocation of resources and maintains the overall financial
           stability of the FSU.
         </p>
@@ -102,12 +102,7 @@
               Monthly expenditure reports are published on the FSU Discord
               Server and Facebook page, ensuring complete transparency with the
               student community. For detailed information, visit the
-              <a
-                href="resources/Financial Policy 2082.pdf"
-                target="_blank"
-                rel="noopener"
-                >FSU Financial Policy</a
-              >.
+              <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">FSU Financial Policy</a>.
             </p>
           </div>
         </div>

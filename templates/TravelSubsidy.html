@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSU Travel Subsidy Calculator</title>
-    <link rel="shortcut icon" href="circfsulogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/tsstyle.css">
+    <link rel="shortcut icon" href="{{url_for('static',filename='resources/circfsulogo.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/tsstyle.css')}}">
 </head>
 <body>
     <nav class="navbar">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="info-item">
                     <h3>Additional Information</h3>
-                    <p>This calculator applies dynamic adjustments based on available budget and remaining fiscal years. The cValue is decided by FSU monthly, you can explore it yourself by enabling sandbox mode. This is completely based on the <a href="resources/Financial Policy 2082.pdf" target="_blank" rel="noopener">FSU Financial Policy</a>.</p>
+                    <p>This calculator applies dynamic adjustments based on available budget and remaining fiscal years. The cValue is decided by FSU monthly, you can explore it yourself by enabling sandbox mode. This is completely based on the <a href="{{url_for('static',filename='resources/Financial Policy 2082.pdf')}}" target="_blank" rel="noopener" style="color: #9E211DE6; text-decoration: none; font-weight: 600;">FSU Financial Policy</a>.</p>
                 </div>
             </div>
         </div>
