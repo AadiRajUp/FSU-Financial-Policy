@@ -7,13 +7,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary: #c49102;
-    --primary-hover: #a17302;
+    --primary: #9E211DE6;
+    --primary-hover: #9e211d;
     --primary-rgb: 196, 145, 2;
     --secondary: #091839;
     --secondary-hover: #0b2143;
     --accent-soft: #fff6e0;
-    --accent-border: #e8c879;
+    --accent-border: #e87979;
 }
 
 body {
