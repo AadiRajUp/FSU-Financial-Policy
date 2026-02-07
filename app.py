@@ -35,3 +35,4 @@ def research():
 @app.route ('/automation/TravelSubsidy.html')
 def travel():
     return render_template('TravelSubsidy.html')
+

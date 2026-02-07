@@ -204,7 +204,11 @@
       bValue = Math.sqrt(bValue);
 
       let totalCost = 1000 * bValue;
-      // Display result instead of alert
+      totalCost = totalCost / 10;
+      totalCost = Math.round(totalCost)
+      totalCost= totalCost * 10
+
+      
       const resultSection = document.getElementById("resultSection");
       document.getElementById("resultAmount").textContent =
         "Rs. " + totalCost.toFixed(2);
